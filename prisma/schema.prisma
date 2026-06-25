@@ -11,3 +11,18 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id       String   @id @default(uuid())
+  username String
+  email    String   @unique
+  password String
+  role     UserRole @default(User)
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+enum UserRole {
+  Admin
+  User
+}
+// Thêm trường phone vào bảng user
